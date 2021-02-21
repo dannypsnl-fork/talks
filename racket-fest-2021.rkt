@@ -33,8 +33,18 @@
            (define-for-syntax name ty)
            (define name exp))])))
 
+(slide
+  #:title "typeof"
+  (code
+    (define (typeof stx)
+      (syntax-parse stx
+        [x:number Number]
+        [x:string String]
+        [x:boolean Boolean]
+        [x:char Char]
+        [_ (eval stx)]))))
+
 ; TODO
-; 1. typeof
 ; 2. function form
 ; 3. claim form
 ; 4. extend?
