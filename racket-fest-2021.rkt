@@ -45,6 +45,7 @@
         [_ (eval stx)]))))
 
 ; TODO
-; 2. function form
-; 3. claim form
-; 4. extend?
+; - function form
+; - claim form
+; - generic
+; - arbitrary length parameter
