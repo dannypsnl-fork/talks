@@ -65,6 +65,11 @@
     [(_ name:id : ty:type)
      #'(define-for-syntax name ty)]))
 
+(slide
+  #:title "claim example"
+  (code (claim add1 : (Number . -> . Number))
+        (add1 "s")))
+
 ; TODO
 ; - generic
 ; - arbitrary length parameter
