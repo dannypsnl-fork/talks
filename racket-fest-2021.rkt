@@ -44,8 +44,27 @@
         [x:char Char]
         [_ (eval stx)]))))
 
+(slide
+  #:title "Function?"
+  (code
+    [(_ (name:id [p*:id ty*:type] ...) : ty:type body)
+     (let (p* ty*) ...
+             body)
+     #'(begin
+         (define-for-syntax name
+           (-> ty* ... ty))
+         (define (name p* ...)
+           body))]))
+
+(slide
+  #:title "But origin racket code?")
+
+(slide
+  #:title "claim"
+  (code
+    [(_ name:id : ty:type)
+     #'(define-for-syntax name ty)]))
+
 ; TODO
-; - function form
-; - claim form
 ; - generic
 ; - arbitrary length parameter
