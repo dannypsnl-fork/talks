@@ -45,6 +45,16 @@
         [_ (eval stx)]))))
 
 (slide
+  #:title "Function"
+  (code (define (id-Number [x : Number]) : Number x)))
+
+(slide
+  #:title "Converted"
+  (code (begin
+          (define-for-syntax id-Number (Number . -> . Number))
+          (define (id-Number x) x))))
+
+(slide
   #:title "Function?"
   (code
     [(_ (name:id [p*:id ty*:type] ...) : ty:type body)
