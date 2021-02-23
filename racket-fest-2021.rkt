@@ -80,6 +80,29 @@
   (code (claim add1 : (Number . -> . Number))
         (add1 "s")))
 
-; TODO
-; - generic
-; - arbitrary length parameter
+(slide
+  #:title "How about Generic?")
+
+(slide
+  #:title "Generic Example"
+  (code (define {A} (id [x : A]) : A
+          x)))
+
+(slide
+  #:title "Expanded"
+  (code (begin
+          (define-for-syntax id (?A . -> . ?A))
+          (define (id x) x))))
+
+(slide
+  #:title "Checking Generic"
+  (code (unify (eval #'(let ([generic* (FreeVar 'generic*)] ...)
+                     ty))
+               (<-type #'(let ([generic* (FreeVar 'generic*)] ...)
+                       (let ([p* ty*] ...)
+                         body)))
+               this-syntax #'body)))
+
+(slide
+  #:title "arbitrary length parameter"
+  (code (claim {A} list : ((*T A) -> (List A)))))
