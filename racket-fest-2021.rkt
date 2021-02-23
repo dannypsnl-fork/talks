@@ -106,3 +106,9 @@
 (slide
   #:title "arbitrary length parameter"
   (code (claim {A} list : ((*T A) -> (List A)))))
+
+(slide
+  #:title "Limitation")
+
+(slide
+  #:title "Up to dependent type?")
