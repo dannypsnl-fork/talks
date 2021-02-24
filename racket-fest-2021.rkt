@@ -8,7 +8,7 @@
 
 (slide
   #:title "Macro as Type?"
-  (code (define- x : Number 1)))
+  (code (define x : Number 1)))
 
 (slide
   #:title "Became"
@@ -17,24 +17,23 @@
           (define x 1))))
 
 (slide
-  #:title "How?"
+  #:title "Simply Typed"
   (code
-    (define-syntax-parser define-
-      [(_ name:id ty exp)
-       (unless (equal? ty (typeof exp))
-         (raise-syntax-error
-           'unexpected
-           (format "expect ~a, but got ~a"
-                   ty
-                   (typeof exp)))
-           this-syntax
-           #'exp)
-       #'(begin
-           (define-for-syntax name ty)
-           (define name exp))])))
+    [(_ name:id ty:type exp)
+     (unless (equal? ty (typeof exp))
+       (raise-syntax-error
+         'unexpected
+         (format "expect ~a, but got ~a"
+                 ty
+                 (typeof exp)))
+         this-syntax
+         #'exp)
+     #'(begin
+         (define-for-syntax name ty)
+         (define name exp))]))
 
 (slide
-  #:title "typeof"
+  #:title "Type of"
   (code
     (define (typeof stx)
       (syntax-parse stx
@@ -49,28 +48,22 @@
   (code (define (id-Number [x : Number]) : Number x)))
 
 (slide
-  #:title "Converted"
+  #:title "Became"
   (code (begin
-          (define-for-syntax id-Number (Number . -> . Number))
+          (define-for-syntax id-Number
+                             (Number . -> . Number))
           (define (id-Number x) x))))
 
 (slide
-  #:title "Function?"
+  #:title "Infer type of function body"
   (code
     [(_ (name:id [p*:id ty*:type] ...) : ty:type body)
-     (let (p* ty*) ...
-             body)
-     #'(begin
-         (define-for-syntax name
-           (-> ty* ... ty))
-         (define (name p* ...)
-           body))]))
+     (unify ty
+            (typeof #'(let ([p* ty*] ...) body)))
+     ...]))
 
 (slide
-  #:title "But origin racket code?")
-
-(slide
-  #:title "claim"
+  #:title "Claim"
   (code
     [(_ name:id : ty:type)
      #'(define-for-syntax name ty)]))
@@ -81,31 +74,20 @@
         (add1 "s")))
 
 (slide
-  #:title "How about Generic?")
-
-(slide
-  #:title "Generic Example"
+  #:title "Generic"
   (code (define {A} (id [x : A]) : A
           x)))
 
 (slide
-  #:title "Expanded"
-  (code (begin
-          (define-for-syntax id (?A . -> . ?A))
-          (define (id x) x))))
-
-(slide
   #:title "Checking Generic"
-  (code (unify (eval #'(let ([generic* (FreeVar 'generic*)] ...)
-                     ty))
+  (code (unify (eval #'(let ([generic* (FreeVar 'generic*)] ...) ty))
                (<-type #'(let ([generic* (FreeVar 'generic*)] ...)
-                       (let ([p* ty*] ...)
-                         body)))
-               this-syntax #'body)))
+                           (let ([p* ty*] ...)
+                             body))))))
 
 (slide
   #:title "arbitrary length parameter"
-  (code (claim {A} list : ((*T A) -> (List A)))))
+  (code (claim {A} list : ((@ A) -> (List A)))))
 
 (slide
   #:title "Limitation")
