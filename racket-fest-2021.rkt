@@ -80,17 +80,20 @@
 
 (slide
   #:title "Checking Generic"
-  (code (unify (eval #'(let ([generic* (FreeVar 'generic*)] ...) ty))
-               (<-type #'(let ([generic* (FreeVar 'generic*)] ...)
-                           (let ([p* ty*] ...)
-                             body))))))
+  (code
+    (unify
+      (eval #'(let ([generic* (FreeVar 'generic*)] ...)
+                ty))
+      (<-type
+        #'(let ([generic* (FreeVar 'generic*)] ...)
+            (let ([p* ty*] ...)
+              body))))))
 
 (slide
   #:title "arbitrary length parameter"
   (code (claim {A} list : ((@ A) -> (List A)))))
 
 (slide
-  #:title "Limitation")
-
-(slide
-  #:title "Up to dependent type?")
+  #:title "Limitation"
+  (item "dependent type?")
+  (item "conflict?"))
