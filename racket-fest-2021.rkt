@@ -97,3 +97,9 @@
   #:title "Limitation"
   (item "dependent type?")
   (item "conflict?"))
+
+(slide
+  #:title "Future Works"
+  (item "module")
+  (item "resolve syntax conflict")
+  (item "dependent type"))
