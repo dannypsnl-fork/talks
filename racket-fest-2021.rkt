@@ -69,7 +69,7 @@
      #'(define-for-syntax name ty)]))
 
 (slide
-  #:title "claim example"
+  #:title "Example"
   (code (claim add1 : (Number . -> . Number))
         (add1 "s")))
 
@@ -94,6 +94,14 @@
   (code (claim {A} list : ((@ A) -> (List A)))))
 
 (slide
+  #:title "Unification"
+  (item "free-variable with Type")
+  (item "function type with function type")
+  (item "higher type with higher type")
+  (item "arbitrary type with Type")
+  (item "Type with Type"))
+
+(slide
   #:title "Limitation"
   (item "dependent type?")
   (item "conflict?"))
@@ -101,5 +109,4 @@
 (slide
   #:title "Future Works"
   (item "module")
-  (item "resolve syntax conflict")
   (item "dependent type"))
