@@ -103,7 +103,6 @@
   (item "free-variable with Type")
   (item "function type with function type")
   (item "higher type with higher type")
-  (item "arbitrary type with Type")
   (item "Type with Type"))
 
 (slide
