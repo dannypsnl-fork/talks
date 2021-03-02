@@ -91,7 +91,12 @@
 
 (slide
   #:title "arbitrary length parameter"
-  (code (claim {A} list : ((@ A) -> (List A)))))
+  (code (claim {A} list : ((@ A) . -> . (List A)))))
+
+(slide
+  #:title "arbitrary parameter example"
+  (code (list 1 2 3))
+  (code (Number Number Number -> (List Number))))
 
 (slide
   #:title "Unification"
