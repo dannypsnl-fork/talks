@@ -4,7 +4,8 @@
 
 (slide
   #:title "Macro as Type"
-  (t "Hi"))
+  (t "Hi")
+  (t "https://github.com/dannypsnl"))
 
 (slide
   #:title "Macro as Type?"
