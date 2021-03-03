@@ -106,11 +106,23 @@
   (item "Type with Type"))
 
 (slide
-  #:title "Limitation"
-  (item "dependent type?")
-  (item "conflict?"))
+  #:title "Limitation")
+
+(slide
+  #:title "dependent type?"
+  (code (data Nat
+              [zero : Nat]
+              [suc (n : Nat) : Nat]))
+  (t "expand to?")
+  (code (define-for-syntax zero 'zero))
+  (code (define-for-syntax zero 'Nat)))
 
 (slide
   #:title "Future Works"
-  (item "module")
-  (item "dependent type"))
+  (item "how to reusing module?")
+  (item "can we support dependent type?")
+  (item "can we solve conflict better?"))
+
+(slide
+  #:title "The End"
+  (t "https://github.com/racket-tw/macro-as-type"))
