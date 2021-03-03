@@ -84,7 +84,7 @@
     (unify
       (eval #'(let ([generic* (FreeVar 'generic*)] ...)
                 ty))
-      (<-type
+      (typeof
         #'(let ([generic* (FreeVar 'generic*)] ...)
             (let ([p* ty*] ...)
               body))))))
